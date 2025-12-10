@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/TugasBesarDesainWeb/static/css/main.6712638d.css",
-    "main.js": "/TugasBesarDesainWeb/static/js/main.6f6fc2e7.js",
+    "main.js": "/TugasBesarDesainWeb/static/js/main.dcec791b.js",
     "index.html": "/TugasBesarDesainWeb/index.html",
     "main.6712638d.css.map": "/TugasBesarDesainWeb/static/css/main.6712638d.css.map",
-    "main.6f6fc2e7.js.map": "/TugasBesarDesainWeb/static/js/main.6f6fc2e7.js.map"
+    "main.dcec791b.js.map": "/TugasBesarDesainWeb/static/js/main.dcec791b.js.map"
   },
   "entrypoints": [
     "static/css/main.6712638d.css",
-    "static/js/main.6f6fc2e7.js"
+    "static/js/main.dcec791b.js"
   ]
 }
