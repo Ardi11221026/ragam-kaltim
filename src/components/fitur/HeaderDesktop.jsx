@@ -118,7 +118,7 @@ const HeaderDesktop = () => {
 
     return (
         <header className="hidden md:block bg-[#102c1e] shadow-md py-6 px-6 relative z-50">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <div className="flex justify-between items-center">
                 {/* Logo - Left */}
                 <div className="flex items-center">
                     <Link to="/" className="flex items-center">
@@ -133,8 +133,8 @@ const HeaderDesktop = () => {
                     </Link>
                 </div>
 
-                {/* Navigation - Center */}
-                <nav className="flex-1 flex justify-center">
+                {/* Navigation - Right */}
+                <nav>
                     <ul className="flex space-x-6 items-center">
                         <li>
                             <Link
@@ -155,7 +155,7 @@ const HeaderDesktop = () => {
                                 <FaChevronDown className={`ml-1 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
                             {dropdownOpen && (
-                                <ul className="absolute top-full mt-2 bg-[#102c1e] text-white rounded shadow-lg w-52 z-50 border border-gray-700 max-h-96 overflow-y-auto">
+                                <ul className="absolute top-full mt-2 bg-[#102c1e] text-white rounded shadow-lg w-52 z-50 border border-gray-700">
                                     {destinations.map((destination) => (
                                         <li key={destination.url}>
                                             <Link
@@ -224,9 +224,9 @@ const HeaderDesktop = () => {
 
             {/* Search Results */}
             {searchResults.length > 0 && (
-                <div className="mt-4 bg-white shadow-lg rounded p-4 max-w-md mx-auto">
+                <div className="mt-4 bg-white shadow-lg rounded p-4 w-96 ml-auto mr-6">
                     <h3 className="font-bold text-lg mb-2 text-gray-800">Hasil Pencarian:</h3>
-                    <ul className="max-h-64 overflow-y-auto">
+                    <ul>
                         {searchResults.map((result) => (
                             <li key={result.url} className="border-b border-gray-200 py-2 last:border-b-0">
                                 <Link 
