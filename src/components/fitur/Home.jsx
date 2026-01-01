@@ -1,6 +1,6 @@
 // Home.jsx
 import React from 'react';
-import Header from './Header';
+import Header from './HeaderDesktop';
 import Footer from './Footer';
 import Banner from './Banner';
 import Destination from './Destination';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from './Header';
+import Header from './HeaderDesktop';
 import Footer from './Footer';
 
 const getImagePath = (path) => `${process.env.PUBLIC_URL}/${path}`;

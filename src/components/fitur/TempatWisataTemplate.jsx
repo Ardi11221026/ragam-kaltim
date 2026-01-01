@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../fitur/Header';
+import Header from '../fitur/HeaderDesktop';
 import Footer from '../fitur/Footer';
 import { tempatwisataData } from '../../data/tempatwisataData';
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
+import HeaderMobile from "./HeaderMobile";
 
 const HeaderDesktop = () => {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -117,131 +118,137 @@ const HeaderDesktop = () => {
     ];
 
     return (
-        <header className="hidden md:block bg-[#102c1e] shadow-md py-6 px-6 relative z-50">
-            <div className="flex justify-between items-center">
-                {/* Logo - Left */}
-                <div className="flex items-center">
-                    <Link to="/" className="flex items-center">
-                        <img
-                            src={`${process.env.PUBLIC_URL}/img/ragam kaltim.png`}
-                            alt="Ragam Kaltim Logo"
-                            className="h-12"
-                        />
-                        <div className="ml-3 text-xl font-bold leading-none text-white">
-                            Ragam <br /> Kaltim
-                        </div>
-                    </Link>
-                </div>
+        <>
+            {/* Mobile Header */}
+            <HeaderMobile />
 
-                {/* Navigation - Right */}
-                <nav>
-                    <ul className="flex space-x-6 items-center">
-                        <li>
-                            <Link
-                                to="/"
-                                className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                            >
-                                Beranda
-                            </Link>
-                        </li>
+            {/* Desktop Header */}
+            <header className="hidden md:block bg-[#102c1e] shadow-md py-6 px-6 relative z-50">
+                <div className="flex justify-between items-center">
+                    {/* Logo - Left */}
+                    <div className="flex items-center">
+                        <Link to="/" className="flex items-center">
+                            <img
+                                src={`${process.env.PUBLIC_URL}/img/ragam kaltim.png`}
+                                alt="Ragam Kaltim Logo"
+                                className="h-12"
+                            />
+                            <div className="ml-3 text-xl font-bold leading-none text-white">
+                                Ragam <br /> Kaltim
+                            </div>
+                        </Link>
+                    </div>
 
-                        {/* Destinasi Dropdown */}
-                        <li className="relative">
-                            <button
-                                onClick={() => setDropdownOpen(!dropdownOpen)}
-                                className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded flex items-center transition-all duration-300"
-                            >
-                                Destinasi
-                                <FaChevronDown className={`ml-1 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {dropdownOpen && (
-                                <ul className="absolute top-full mt-2 bg-[#102c1e] text-white rounded shadow-lg w-52 z-50 border border-gray-700">
-                                    {destinations.map((destination) => (
-                                        <li key={destination.url}>
-                                            <Link
-                                                to={destination.url}
-                                                className="block px-4 py-2 hover:bg-[#0a1f13] transition-all duration-300"
-                                                onClick={() => setDropdownOpen(false)}
-                                            >
-                                                {destination.title}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-
-                        <li>
-                            <Link
-                                to="/blog"
-                                className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                            >
-                                Blog
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                to="/about"
-                                className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                            >
-                                Tentang
-                            </Link>
-                        </li>
-
-                        {/* Search Icon */}
-                        <li className="relative">
-                            <button
-                                onClick={toggleSearch}
-                                className="text-white hover:bg-[#0a1f13] px-2 py-2 rounded transition-all duration-300"
-                            >
-                                <FaSearch className="h-5 w-5" />
-                            </button>
-                            {searchOpen && (
-                                <form
-                                    onSubmit={handleSearchSubmit}
-                                    className="absolute top-full right-0 mt-2 bg-white rounded shadow-lg p-3 w-64 z-50"
+                    {/* Navigation - Right */}
+                    <nav>
+                        <ul className="flex space-x-6 items-center">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
                                 >
-                                    <input
-                                        type="text"
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                        placeholder="Cari..."
-                                        className="w-full p-2 border border-gray-300 rounded text-gray-800"
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="mt-2 w-full bg-blue-500 text-white rounded py-2 hover:bg-blue-600 transition-all duration-300"
-                                    >
-                                        Cari
-                                    </button>
-                                </form>
-                            )}
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            {/* Search Results */}
-            {searchResults.length > 0 && (
-                <div className="mt-4 bg-white shadow-lg rounded p-4 w-96 ml-auto mr-6">
-                    <h3 className="font-bold text-lg mb-2 text-gray-800">Hasil Pencarian:</h3>
-                    <ul>
-                        {searchResults.map((result) => (
-                            <li key={result.url} className="border-b border-gray-200 py-2 last:border-b-0">
-                                <Link 
-                                    to={result.url} 
-                                    className="text-gray-800 hover:text-blue-600 hover:underline"
-                                    onClick={() => setSearchResults([])}
-                                >
-                                    {result.title}
+                                    Beranda
                                 </Link>
                             </li>
-                        ))}
-                    </ul>
+
+                            {/* Destinasi Dropdown */}
+                            <li className="relative">
+                                <button
+                                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                                    className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded flex items-center transition-all duration-300"
+                                >
+                                    Destinasi
+                                    <FaChevronDown className={`ml-1 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {dropdownOpen && (
+                                    <ul className="absolute top-full mt-2 bg-[#102c1e] text-white rounded shadow-lg w-52 z-50 border border-gray-700">
+                                        {destinations.map((destination) => (
+                                            <li key={destination.url}>
+                                                <Link
+                                                    to={destination.url}
+                                                    className="block px-4 py-2 hover:bg-[#0a1f13] transition-all duration-300"
+                                                    onClick={() => setDropdownOpen(false)}
+                                                >
+                                                    {destination.title}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+
+                            <li>
+                                <Link
+                                    to="/blog"
+                                    className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
+                                >
+                                    Blog
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link
+                                    to="/about"
+                                    className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
+                                >
+                                    Tentang
+                                </Link>
+                            </li>
+
+                            {/* Search Icon */}
+                            <li className="relative">
+                                <button
+                                    onClick={toggleSearch}
+                                    className="text-white hover:bg-[#0a1f13] px-2 py-2 rounded transition-all duration-300"
+                                >
+                                    <FaSearch className="h-5 w-5" />
+                                </button>
+                                {searchOpen && (
+                                    <form
+                                        onSubmit={handleSearchSubmit}
+                                        className="absolute top-full right-0 mt-2 bg-white rounded shadow-lg p-3 w-64 z-50"
+                                    >
+                                        <input
+                                            type="text"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="Cari..."
+                                            className="w-full p-2 border border-gray-300 rounded text-gray-800"
+                                        />
+                                        <button
+                                            type="submit"
+                                            className="mt-2 w-full bg-blue-500 text-white rounded py-2 hover:bg-blue-600 transition-all duration-300"
+                                        >
+                                            Cari
+                                        </button>
+                                    </form>
+                                )}
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            )}
-        </header>
+
+                {/* Search Results */}
+                {searchResults.length > 0 && (
+                    <div className="mt-4 bg-white shadow-lg rounded p-4 w-96 ml-auto mr-6">
+                        <h3 className="font-bold text-lg mb-2 text-gray-800">Hasil Pencarian:</h3>
+                        <ul>
+                            {searchResults.map((result) => (
+                                <li key={result.url} className="border-b border-gray-200 py-2 last:border-b-0">
+                                    <Link 
+                                        to={result.url} 
+                                        className="text-gray-800 hover:text-blue-600 hover:underline"
+                                        onClick={() => setSearchResults([])}
+                                    >
+                                        {result.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </header>
+        </>
     );
 };
 

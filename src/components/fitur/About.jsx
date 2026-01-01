@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../fitur/Header';
+import Header from '../fitur/HeaderDesktop';
 import Footer from '../fitur/Footer';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
