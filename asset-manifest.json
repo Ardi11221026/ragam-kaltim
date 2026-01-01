@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ragam-kaltim/static/css/main.1783f007.css",
-    "main.js": "/ragam-kaltim/static/js/main.c92d4a92.js",
+    "main.css": "/ragam-kaltim/static/css/main.c66130e7.css",
+    "main.js": "/ragam-kaltim/static/js/main.5b32640e.js",
     "index.html": "/ragam-kaltim/index.html",
-    "main.1783f007.css.map": "/ragam-kaltim/static/css/main.1783f007.css.map",
-    "main.c92d4a92.js.map": "/ragam-kaltim/static/js/main.c92d4a92.js.map"
+    "main.c66130e7.css.map": "/ragam-kaltim/static/css/main.c66130e7.css.map",
+    "main.5b32640e.js.map": "/ragam-kaltim/static/js/main.5b32640e.js.map"
   },
   "entrypoints": [
-    "static/css/main.1783f007.css",
-    "static/js/main.c92d4a92.js"
+    "static/css/main.c66130e7.css",
+    "static/js/main.5b32640e.js"
   ]
 }
