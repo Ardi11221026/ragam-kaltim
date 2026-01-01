@@ -65,7 +65,7 @@ const HeaderMobile = () => {
                         <li>
                             <Link
                                 to="/"
-                                className="block text-center font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
+                                className="block text-left font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
                                 onClick={closeMobileMenu}
                             >
                                 Beranda
@@ -76,10 +76,10 @@ const HeaderMobile = () => {
                         <li>
                             <button
                                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                                className="w-full text-center font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded flex items-center justify-center transition-all duration-300"
+                                className="w-full text-left font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded flex items-center justify-between transition-all duration-300"
                             >
                                 Destinasi
-                                <FaChevronDown className={`ml-2 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                                <FaChevronDown className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
                             {dropdownOpen && (
                                 <ul className="mt-2 bg-[#0a1f13] rounded-lg overflow-hidden">
@@ -87,7 +87,7 @@ const HeaderMobile = () => {
                                         <li key={destination.url}>
                                             <Link
                                                 to={destination.url}
-                                                className="block text-center text-white hover:bg-[#102c1e] px-4 py-2 transition-all duration-300 text-sm"
+                                                className="block text-left text-white hover:bg-[#102c1e] px-6 py-2 transition-all duration-300 text-sm"
                                                 onClick={closeMobileMenu}
                                             >
                                                 {destination.title}
@@ -101,7 +101,7 @@ const HeaderMobile = () => {
                         <li>
                             <Link
                                 to="/blog"
-                                className="block text-center font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
+                                className="block text-left font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
                                 onClick={closeMobileMenu}
                             >
                                 Blog
@@ -111,7 +111,7 @@ const HeaderMobile = () => {
                         <li>
                             <Link
                                 to="/about"
-                                className="block text-center font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
+                                className="block text-left font-bold text-white hover:bg-[#0a1f13] px-4 py-3 rounded transition-all duration-300"
                                 onClick={closeMobileMenu}
                             >
                                 Tentang
