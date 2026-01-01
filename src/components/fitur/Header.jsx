@@ -7,6 +7,8 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const destinationRef = useRef(null);
 
     // Data statis untuk pencarian
@@ -106,135 +108,141 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-[#102c1e] shadow-md py-6 px-6 mt-0 flex justify-between items-center relative z-50">
-            {/* Logo Section */}
-            <div className="logo-section flex justify-center items-center">
-                <Link to="/" className="flex items-center">
-                    <img
-                        src={`${process.env.PUBLIC_URL}/img/ragam kaltim.png`}
-                        alt="Ragam Kaltim Logo"
-                        className="h-12"
-                    />
-                    <div className="ml-3 text-xl font-bold leading-none text-center text-white">
-                        Ragam <br /> Kaltim
-                    </div>
-                </Link>
-            </div>
+        <header className="bg-[#102c1e] shadow-md py-6 px-6 mt-0 relative z-50">
+            <div className="flex justify-between items-center">
+                {/* Logo Section - Left */}
+                <div className="logo-section flex justify-center items-center">
+                    <Link to="/" className="flex items-center">
+                        <img
+                            src={`${process.env.PUBLIC_URL}/img/ragam kaltim.png`}
+                            alt="Ragam Kaltim Logo"
+                            className="h-12"
+                        />
+                        <div className="ml-3 text-xl font-bold leading-none text-center text-white">
+                            Ragam <br /> Kaltim
+                        </div>
+                    </Link>
+                </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex">
-                <ul className="flex space-x-4 items-center h-full">
-                    <li>
-                        <Link
-                            to="/"
-                            className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                        >
-                            Beranda
-                        </Link>
-                    </li>
+                {/* Desktop Navigation - Center */}
+                <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                    <ul className="flex space-x-4 items-center h-full">
+                        <li>
+                            <Link
+                                to="/"
+                                className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
+                            >
+                                Beranda
+                            </Link>
+                        </li>
 
-                   {/* Destinasi Dropdown */}
-<li className="relative group" ref={destinationRef}>
-    <button
-        className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded flex items-center transition-all duration-300"
-    >
-        Destinasi
-        <FaChevronDown className="ml-1" />
-    </button>
-    <ul className="absolute bg-[#102c1e] text-white mt-1 rounded shadow-md w-48 transform transition-transform duration-300 origin-top opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100 z-50">
-        {[
-            { title: "Balikpapan", url: "/balikpapan" },
-            { title: "Berau", url: "/berau" },
-            { title: "Bontang", url: "/bontang" },
-            { title: "Kutai Barat", url: "/kutai-barat" },
-            { title: "Kutai Kartanegara", url: "/kutai-kartanegara" },
-            { title: "Kutai Timur", url: "/kutai-timur" },
-            { title: "Mahakam Ulu", url: "/mahakam-ulu" },
-            { title: "Paser", url: "/paser" },
-            { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
-            { title: "Samarinda", url: "/samarinda" }
-        ].map((destination) => (
-            <li key={destination.url}>
-                <Link
-                    to={destination.url}
-                    className="block px-4 py-2 rounded hover:bg-[#0a1f13] transition-all duration-300"
+                        {/* Destinasi Dropdown - Click to toggle */}
+                        <li className="relative" ref={destinationRef}>
+                            <button
+                                onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
+                                className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded flex items-center transition-all duration-300"
+                            >
+                                Destinasi
+                                <FaChevronDown className={`ml-1 transition-transform duration-300 ${desktopDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {desktopDropdownOpen && (
+                                <ul className="absolute top-full mt-2 bg-[#102c1e] text-white rounded shadow-md w-48 z-50 border border-gray-700">
+                                    {[
+                                        { title: "Balikpapan", url: "/balikpapan" },
+                                        { title: "Berau", url: "/berau" },
+                                        { title: "Bontang", url: "/bontang" },
+                                        { title: "Kutai Barat", url: "/kutai-barat" },
+                                        { title: "Kutai Kartanegara", url: "/kutai-kartanegara" },
+                                        { title: "Kutai Timur", url: "/kutai-timur" },
+                                        { title: "Mahakam Ulu", url: "/mahakam-ulu" },
+                                        { title: "Paser", url: "/paser" },
+                                        { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
+                                        { title: "Samarinda", url: "/samarinda" }
+                                    ].map((destination) => (
+                                        <li key={destination.url}>
+                                            <Link
+                                                to={destination.url}
+                                                className="block px-4 py-2 rounded hover:bg-[#0a1f13] transition-all duration-300"
+                                                onClick={() => setDesktopDropdownOpen(false)}
+                                            >
+                                                {destination.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
+
+                        <li>
+                            <Link
+                                to="/blog"
+                                className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
+                            >
+                                Blog
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
+                            >
+                                Tentang
+                            </Link>
+                        </li>
+
+                        {/* Search Icon */}
+                        <li className="relative flex items-center">
+                            <button
+                                onClick={toggleSearch}
+                                className="font-bold text-white hover:text-gray-200 hover:bg-[#0a1f13] px-2 py-2 rounded flex items-center"
+                            >
+                                <FaSearch className="h-6 w-6 cursor-pointer" />
+                            </button>
+                            {searchOpen && (
+                                <form
+                                    onSubmit={handleSearchSubmit}
+                                    className="absolute top-12 bg-white rounded shadow-md p-2 w-64 z-50"
+                                >
+                                    <input
+                                        type="text"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder="Cari..."
+                                        className="w-full p-2 border border-gray-300 rounded"
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="mt-2 w-full bg-blue-500 text-white rounded py-1 hover:bg-blue-600"
+                                    >
+                                        Cari
+                                    </button>
+                                </form>
+                            )}
+                        </li>
+                    </ul>
+                </nav>
+
+                {/* Mobile Hamburger Button - Right */}
+                <button
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="md:hidden flex flex-col space-y-1.5 z-50"
                 >
-                    {destination.title}
-                </Link>
-            </li>
-        ))}
-    </ul>
-</li>
-
-                    <li>
-                        <Link
-                            to="/blog"
-                            className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                        >
-                            Blog
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/about"
-                            className="font-bold text-white hover:text-white hover:bg-[#0a1f13] px-3 py-2 rounded transition-all duration-300"
-                        >
-                            Tentang
-                        </Link>
-                    </li>
-
-                    {/* Search Icon */}
-<li className="relative flex items-center justify-center space-x-4">
-    <button
-        onClick={toggleSearch}
-        className="font-bold text-white hover:text-gray-200 hover:bg-[#0a1f13] px-2 py-2 rounded flex items-center"
-    >
-        <FaSearch className="h-6 w-6 cursor-pointer" />
-    </button>
-    {searchOpen && (
-       <form
-       onSubmit={handleSearchSubmit}
-       className="absolute top-12 sm:top-10 transform -translate-x-1/2 bg-white rounded shadow-md p-2 w-64 z-50"
-   >
-       <input
-           type="text"
-           value={searchQuery}
-           onChange={(e) => setSearchQuery(e.target.value)}
-           placeholder="Cari..."
-           className="w-full p-2 border border-gray-300 rounded"
-       />
-       <button
-           type="submit"
-           className="mt-2 w-full bg-blue-500 text-white rounded py-1 hover:bg-blue-600"
-       >
-           Cari
-       </button>
-   </form>   
+                    {!mobileMenuOpen ? (
+                        <>
+                            <span className="block w-6 h-0.5 bg-white"></span>
+                            <span className="block w-6 h-0.5 bg-white"></span>
+                            <span className="block w-6 h-0.5 bg-white"></span>
+                        </>
+                    ) : (
+                        <FaTimes className="w-6 h-6 text-white" />
                     )}
-                </li>
-                </ul>
-            </nav>
-
-            {/* Mobile Hamburger Button */}
-            <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden flex flex-col space-y-1.5 z-50"
-            >
-                {!mobileMenuOpen ? (
-                    <>
-                        <span className="block w-6 h-0.5 bg-white"></span>
-                        <span className="block w-6 h-0.5 bg-white"></span>
-                        <span className="block w-6 h-0.5 bg-white"></span>
-                    </>
-                ) : (
-                    <FaTimes className="w-6 h-6 text-white" />
-                )}
-            </button>
+                </button>
+            </div>
 
             {/* Mobile Navigation Menu */}
             {mobileMenuOpen && (
-                <nav className="absolute top-20 left-0 w-full bg-[#0a1f13] shadow-lg md:hidden z-40">
-                    <ul className="flex flex-col space-y-2 p-4">
+                <nav className="md:hidden mt-4 pb-4 z-40">
+                    <ul className="flex flex-col space-y-2">
                         <li>
                             <Link
                                 to="/"
@@ -246,36 +254,41 @@ const Header = () => {
                         </li>
                         <li>
                             <button
-                                className="w-full text-left font-bold text-white hover:text-orange-400 px-3 py-2 rounded flex items-center transition-all duration-300"
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                                className="w-full text-left font-bold text-white hover:text-orange-400 px-3 py-2 rounded flex items-center justify-between transition-all duration-300"
                             >
                                 Destinasi
-                                <FaChevronDown className="ml-1" />
+                                <FaChevronDown className={`transition-transform duration-300 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
-                            <ul className="pl-6 flex flex-col space-y-1 mt-2">
-                                {[
-                                    { title: "Balikpapan", url: "/balikpapan" },
-                                    { title: "Berau", url: "/berau" },
-                                    { title: "Bontang", url: "/bontang" },
-                                    { title: "Kutai Barat", url: "/kutai-barat" },
-                                    { title: "Kutai Kartanegara", url: "/kutai-kartanegara" },
-                                    { title: "Kutai Timur", url: "/kutai-timur" },
-                                    { title: "Mahakam Ulu", url: "/mahakam-ulu" },
-                                    { title: "Paser", url: "/paser" },
-                                    { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
-                                    { title: "Samarinda", url: "/samarinda" }
-                                ].map((destination) => (
-                                    <li key={destination.url}>
-                                        <Link
-                                            to={destination.url}
-                                            className="block text-white hover:text-orange-400 px-3 py-1 rounded transition-all duration-300 text-sm"
-                                            onClick={() => setMobileMenuOpen(false)}
-                                        >
-                                            {destination.title}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            {mobileDropdownOpen && (
+                                <ul className="pl-6 flex flex-col space-y-1 mt-2">
+                                    {[
+                                        { title: "Balikpapan", url: "/balikpapan" },
+                                        { title: "Berau", url: "/berau" },
+                                        { title: "Bontang", url: "/bontang" },
+                                        { title: "Kutai Barat", url: "/kutai-barat" },
+                                        { title: "Kutai Kartanegara", url: "/kutai-kartanegara" },
+                                        { title: "Kutai Timur", url: "/kutai-timur" },
+                                        { title: "Mahakam Ulu", url: "/mahakam-ulu" },
+                                        { title: "Paser", url: "/paser" },
+                                        { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
+                                        { title: "Samarinda", url: "/samarinda" }
+                                    ].map((destination) => (
+                                        <li key={destination.url}>
+                                            <Link
+                                                to={destination.url}
+                                                className="block text-white hover:text-orange-400 px-3 py-1 rounded transition-all duration-300 text-sm"
+                                                onClick={() => {
+                                                    setMobileMenuOpen(false);
+                                                    setMobileDropdownOpen(false);
+                                                }}
+                                            >
+                                                {destination.title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </li>
                         <li>
                             <Link
@@ -297,14 +310,16 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-            )}            {/* Search Results */}
+            )}
+
+            {/* Search Results */}
             {searchResults.length > 0 && (
-                <div className="absolute top-20 mt-10 right-0 bg-white shadow-md rounded p-4 w-96 z-50">
+                <div className="mt-4 bg-white shadow-md rounded p-4 w-full md:w-96 z-50">
                     <h3 className="font-bold text-lg mb-2">Hasil Pencarian:</h3>
                     <ul>
                         {searchResults.map((result) => (
                             <li key={result.url} className="border-b border-gray-200 py-2">
-                                <Link to={result.url} className="text-white hover:underline hover:decoration-white">
+                                <Link to={result.url} className="text-gray-800 hover:underline hover:decoration-gray-800">
                                     {result.title}
                                 </Link>
                             </li>
