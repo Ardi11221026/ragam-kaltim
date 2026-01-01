@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { FaChevronDown, FaTimes } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 
 const HeaderMobile = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,6 +18,13 @@ const HeaderMobile = () => {
         { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
         { title: "Samarinda", url: "/samarinda" }
     ];
+
+    const toggleMenu = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+        if (mobileMenuOpen) {
+            setDropdownOpen(false);
+        }
+    };
 
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
@@ -40,26 +47,38 @@ const HeaderMobile = () => {
                     </div>
                 </Link>
 
-                {/* Hamburger / Close Button - Right */}
+                {/* Hamburger Button with Animation */}
                 <button
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="z-50 p-2"
+                    onClick={toggleMenu}
+                    className="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none z-50"
                     aria-label="Toggle menu"
                 >
-                    {!mobileMenuOpen ? (
-                        <div className="flex flex-col space-y-1.5">
-                            <span className="block w-6 h-0.5 bg-white"></span>
-                            <span className="block w-6 h-0.5 bg-white"></span>
-                            <span className="block w-6 h-0.5 bg-white"></span>
-                        </div>
-                    ) : (
-                        <FaTimes className="w-6 h-6 text-white" />
-                    )}
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                            mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                        }`}
+                    ></span>
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                            mobileMenuOpen ? 'opacity-0' : ''
+                        }`}
+                    ></span>
+                    <span
+                        className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                            mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                        }`}
+                    ></span>
                 </button>
             </div>
 
-            {/* Mobile Menu Dropdown */}
-            {mobileMenuOpen && (
+            {/* Mobile Menu Dropdown with Transition */}
+            <div
+                className={`transition-all duration-200 ease-out overflow-hidden ${
+                    mobileMenuOpen
+                        ? 'max-h-screen opacity-100 translate-y-0'
+                        : 'max-h-0 opacity-0 -translate-y-2'
+                }`}
+            >
                 <nav className="mt-4 pb-4">
                     <ul className="flex flex-col space-y-1">
                         <li>
@@ -119,7 +138,7 @@ const HeaderMobile = () => {
                         </li>
                     </ul>
                 </nav>
-            )}
+            </div>
         </header>
     );
 };

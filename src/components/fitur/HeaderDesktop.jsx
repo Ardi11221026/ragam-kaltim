@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import HeaderMobile from "./HeaderMobile";
 
@@ -8,6 +8,24 @@ const HeaderDesktop = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+
+        if (dropdownOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownOpen]);
 
     // Data statis untuk pencarian
     const pages = [
@@ -152,7 +170,7 @@ const HeaderDesktop = () => {
                             </li>
 
                             {/* Destinasi Dropdown */}
-                            <li className="relative">
+                            <li className="relative" ref={dropdownRef}>
                                 <button
                                     onClick={() => setDropdownOpen(!dropdownOpen)}
                                     className="font-bold text-white hover:bg-[#0a1f13] px-3 py-2 rounded flex items-center transition-all duration-300"
