@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TugasBesarDesainWeb/static/css/main.6712638d.css",
-    "main.js": "/TugasBesarDesainWeb/static/js/main.dcec791b.js",
-    "index.html": "/TugasBesarDesainWeb/index.html",
-    "main.6712638d.css.map": "/TugasBesarDesainWeb/static/css/main.6712638d.css.map",
-    "main.dcec791b.js.map": "/TugasBesarDesainWeb/static/js/main.dcec791b.js.map"
+    "main.css": "/ragam-kaltim/static/css/main.a639245e.css",
+    "main.js": "/ragam-kaltim/static/js/main.64774011.js",
+    "index.html": "/ragam-kaltim/index.html",
+    "main.a639245e.css.map": "/ragam-kaltim/static/css/main.a639245e.css.map",
+    "main.64774011.js.map": "/ragam-kaltim/static/js/main.64774011.js.map"
   },
   "entrypoints": [
-    "static/css/main.6712638d.css",
-    "static/js/main.dcec791b.js"
+    "static/css/main.a639245e.css",
+    "static/js/main.64774011.js"
   ]
 }
