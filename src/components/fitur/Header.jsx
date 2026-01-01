@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
-import { FaChevronDown, FaSearch } from "react-icons/fa";
+import { FaChevronDown, FaSearch, FaTimes } from "react-icons/fa";
 
 const Header = () => {
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const destinationRef = useRef(null);
 
     // Data statis untuk pencarian
@@ -120,8 +121,8 @@ const Header = () => {
                 </Link>
             </div>
 
-            {/* Navigation Section */}
-            <nav>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex">
                 <ul className="flex space-x-4 items-center h-full">
                     <li>
                         <Link
@@ -212,7 +213,91 @@ const Header = () => {
                     )}
                 </li>
                 </ul>
-            </nav>            {/* Search Results */}
+            </nav>
+
+            {/* Mobile Hamburger Button */}
+            <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden flex flex-col space-y-1.5 z-50"
+            >
+                {!mobileMenuOpen ? (
+                    <>
+                        <span className="block w-6 h-0.5 bg-white"></span>
+                        <span className="block w-6 h-0.5 bg-white"></span>
+                        <span className="block w-6 h-0.5 bg-white"></span>
+                    </>
+                ) : (
+                    <FaTimes className="w-6 h-6 text-white" />
+                )}
+            </button>
+
+            {/* Mobile Navigation Menu */}
+            {mobileMenuOpen && (
+                <nav className="absolute top-20 left-0 w-full bg-[#0a1f13] shadow-lg md:hidden z-40">
+                    <ul className="flex flex-col space-y-2 p-4">
+                        <li>
+                            <Link
+                                to="/"
+                                className="block font-bold text-white hover:text-orange-400 px-3 py-2 rounded transition-all duration-300"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Beranda
+                            </Link>
+                        </li>
+                        <li>
+                            <button
+                                className="w-full text-left font-bold text-white hover:text-orange-400 px-3 py-2 rounded flex items-center transition-all duration-300"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Destinasi
+                                <FaChevronDown className="ml-1" />
+                            </button>
+                            <ul className="pl-6 flex flex-col space-y-1 mt-2">
+                                {[
+                                    { title: "Balikpapan", url: "/balikpapan" },
+                                    { title: "Berau", url: "/berau" },
+                                    { title: "Bontang", url: "/bontang" },
+                                    { title: "Kutai Barat", url: "/kutai-barat" },
+                                    { title: "Kutai Kartanegara", url: "/kutai-kartanegara" },
+                                    { title: "Kutai Timur", url: "/kutai-timur" },
+                                    { title: "Mahakam Ulu", url: "/mahakam-ulu" },
+                                    { title: "Paser", url: "/paser" },
+                                    { title: "Penajam Paser Utara", url: "/penajam-paser-utara" },
+                                    { title: "Samarinda", url: "/samarinda" }
+                                ].map((destination) => (
+                                    <li key={destination.url}>
+                                        <Link
+                                            to={destination.url}
+                                            className="block text-white hover:text-orange-400 px-3 py-1 rounded transition-all duration-300 text-sm"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
+                                            {destination.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                        <li>
+                            <Link
+                                to="/blog"
+                                className="block font-bold text-white hover:text-orange-400 px-3 py-2 rounded transition-all duration-300"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Blog
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                className="block font-bold text-white hover:text-orange-400 px-3 py-2 rounded transition-all duration-300"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Tentang
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            )}            {/* Search Results */}
             {searchResults.length > 0 && (
                 <div className="absolute top-20 mt-10 right-0 bg-white shadow-md rounded p-4 w-96 z-50">
                     <h3 className="font-bold text-lg mb-2">Hasil Pencarian:</h3>

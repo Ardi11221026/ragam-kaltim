@@ -61,7 +61,7 @@ const CityTemplate = ({ cityKey, cityUrl }) => {
                   {cityData.name} menawarkan berbagai destinasi wisata menarik yang bisa dijelajahi:
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-6">
                   {cityData.attractions.map((place, index) => (
                     <Link
                       key={index}
