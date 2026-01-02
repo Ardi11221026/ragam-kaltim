@@ -1,6 +1,6 @@
 // Home.jsx
 import React from 'react';
-import Header from './HeaderDesktop';
+import Header from './Header';
 import Footer from './Footer';
 import Banner from './Banner';
 import Destination from './Destination';
@@ -9,8 +9,10 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <Banner />
-            <Destination />
+            <div className="pt-16 md:pt-0">
+                <Banner />
+                <Destination />
+            </div>
             <Footer />
         </div>
     );

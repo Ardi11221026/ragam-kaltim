@@ -32,11 +32,11 @@ const HeaderMobile = () => {
     };
 
     return (
-        <header className="md:hidden bg-[#102c1e] shadow-md py-4 px-4 relative z-50">
+        <header className="fixed top-0 left-0 right-0 bg-[#102c1e] shadow-md py-4 px-4 z-50">
             {/* Top Bar - Logo Left, Hamburger Right */}
             <div className="flex justify-between items-center">
                 {/* Logo - Left */}
-                <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
+                <Link to="/" className="flex items-center mr-[350px]" onClick={closeMobileMenu}>
                     <img
                         src={`${process.env.PUBLIC_URL}/img/ragam kaltim.png`}
                         alt="Ragam Kaltim Logo"
@@ -50,7 +50,7 @@ const HeaderMobile = () => {
                 {/* Hamburger Button with Animation */}
                 <button
                     onClick={toggleMenu}
-                    className="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none z-50"
+                    className="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none mr-[5px]"
                     aria-label="Toggle menu"
                 >
                     <span
@@ -73,13 +73,13 @@ const HeaderMobile = () => {
 
             {/* Mobile Menu Dropdown with Transition */}
             <div
-                className={`transition-all duration-200 ease-out overflow-hidden ${
+                className={`transition-all duration-300 ease-out overflow-hidden ${
                     mobileMenuOpen
-                        ? 'max-h-screen opacity-100 translate-y-0'
-                        : 'max-h-0 opacity-0 -translate-y-2'
+                        ? 'max-h-96 opacity-100'
+                        : 'max-h-0 opacity-0'
                 }`}
             >
-                <nav className="mt-4 pb-4">
+                <nav className="mt-4 pb-4 mr-[350px]">
                     <ul className="flex flex-col space-y-1">
                         <li>
                             <Link
